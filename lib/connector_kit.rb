@@ -2,6 +2,7 @@ require 'connector_kit/httpclient.rb'
 require 'connector_kit/token_generator'
 require 'connector_kit/version'
 require 'connector_kit/mappers/app_list_response_mapper'
+require 'connector_kit/mappers/app_version_list_response_mapper'
 require 'connector_kit/mappers/user_list_response_mapper'
 require 'connector_kit/mappers/build_list_response_mapper'
 require 'connector_kit/mappers/build_details_response_mapper'
@@ -38,6 +39,20 @@ module ConnectorKit
       @httpclient.get(
         "/buildBetaDetails/#{build.id}",
         BuildDetailsResponseMapper.new
+      )
+    end
+
+    def build_details(build)
+      @httpclient.get(
+        "/builds/#{build.id}",
+        BuildDetailsResponseMapper.new
+      )
+    end
+
+    def app_versions(app_id)
+      @httpclient.get(
+        "/apps/#{app_id}/appStoreVersions",
+        AppVersionListResponseMapper.new
       )
     end
   end

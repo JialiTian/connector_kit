@@ -2,16 +2,14 @@ require 'connector_kit/models/model'
 
 module ConnectorKit
   # Simple model class for representing Apps
-  class App < Model
-    attr_reader :bundle_id, :name, :sku, :all_attrs
+  class AppVersion < Model
+    attr_reader :app_store_status, :version_string, :all_attrs
 
     def initialize(options)
       super(options)
-
       attrs = options['attributes']
-      @bundle_id = attrs['bundleId']
-      @name = attrs['name']
-      @sku = attrs['sku']
+      @app_store_status = attrs['appStoreState']
+      @version_string = attrs['versionString']
       @all_attrs = options
     end
   end
