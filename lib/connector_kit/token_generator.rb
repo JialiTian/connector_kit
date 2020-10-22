@@ -23,8 +23,6 @@ module ConnectorKit
       expiration = Time.now.to_i + 20 * 60
       @payload[:exp] = expiration
 
-      puts "Generated token expires: #{Time.at(expiration)}"
-
       JWT.encode(@payload, ecdsa_key, 'ES256', @custom_headers)
     end
   end
